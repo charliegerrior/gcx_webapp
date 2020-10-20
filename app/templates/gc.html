@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <div class="container-fluid">
+        <div class="row">
+            <h1>${{ symbol }} - ${{ '{0:.2f}'.format(price) }}</h1>
+        </div>
+          <div class="row">
+            <div class="col-md-6">
+              {% include '_bids.html' %}
+            </div>
+            <div class="col-md-6">
+              {% include '_asks.html' %}
+            </div>
+          </div>
+    </div>
+    
+    
+{% endblock %}

@@ -1,0 +1,14 @@
+<table class="table table-striped">
+    <tr>
+        <th>ask</th>
+        <th>status</th>
+        <th>timestamp</th>
+    </tr>
+    {% for ask in asks %}
+    <tr>
+        <td><a href="https://www.reddit.com{{ ask.submission.reddit_link }}">${{ '{0:.2f}'.format(ask.price) }} x {{ '{}'.format(ask.qty) }}</a></td>
+        <td>{{ ask.submission.status }}</td>
+        <td>{{ moment(ask.submission.created_at).fromNow() }}</td>
+    </tr>
+    {% endfor %}
+</table>

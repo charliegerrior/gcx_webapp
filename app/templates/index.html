@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h1>GCs</h1>
+    <hr>
+    <table class="table table-striped">
+        <tr>
+            <th>symbol</th>
+            <th>price (per $ of face value)</th>
+            <th>bid</th>
+            <th>ask</th>
+            <th>volume (prev. 24 hours)</th>
+        {% for gc in gcs %}
+        <tr>
+            <td><a href="/{{ gc.symbol }}">{{ gc.symbol }}</a></td>
+            <td>${{ '{0:.2f}'.format(gc.price) }}</td>
+            <td>${{ '{0:.2f}'.format(gc.bid) }}</td>
+            <td>${{ '{0:.2f}'.format(gc.ask) }}</td>
+            <td>{{ gc.volume }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
