@@ -1,3 +1,6 @@
 migrations/
 app.db
 logs/
+__pycache__/
+app/__pycache__/
+venv/
