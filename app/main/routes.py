@@ -1,10 +1,11 @@
 from flask import render_template
-from app import app, db
+from app import db
 from app.models import Submission, Offer
 from datetime import datetime,timedelta
+from app.main import bp
 
-@app.route('/')
-@app.route('/index')
+@bp.route('/')
+@bp.route('/index')
 def index():
     query = db.session.query(Offer.symbol.distinct().label("symbol"))
     symbols = [row.symbol for row in query.all()]
@@ -23,7 +24,7 @@ def index():
 
     return render_template('index.html', title='Home', gcs = gcs)
 
-@app.route('/<symbol>')
+@bp.route('/<symbol>')
 def gc(symbol):
     symbol = symbol.upper()
     #bid = db.session.query(Offer).filter_by(symbol=symbol, type="bid").join(Submission).order_by(Submission.created_at.desc()).first()
@@ -38,23 +39,23 @@ def gc(symbol):
 
     return render_template('gc.html', gc = gc, bid = latestBid, ask = latestAsk, symbol = symbol, vol = vol, price = price, bids = recentBids, asks=recentAsks)
 
-@app.route('/<symbol>/bids')
+@bp.route('/<symbol>/bids')
 def bids(symbol):
     symbol = symbol.upper()
     bids = db.session.query(Offer).filter_by(symbol=symbol, type="bid").join(Submission).order_by(Submission.created_at.desc()).limit(10).all()
     return render_template('bids.html', symbol = symbol, bids = bids)
 
-@app.route('/<symbol>/asks')
+@bp.route('/<symbol>/asks')
 def asks(symbol):
     symbol = symbol.upper()
     asks = db.session.query(Offer).filter_by(symbol=symbol, type="ask").join(Submission).order_by(Submission.created_at.desc()).limit(10).all()
-    
+
     return render_template('asks.html', symbol = symbol, asks = asks)
 
-@app.route('/about')
+@bp.route('/about')
 def about():
     return render_template('about.html', title='About')
 
-@app.route('/legal')
+@bp.route('/legal')
 def legal():
     return render_template('legal.html', title='Legal')
