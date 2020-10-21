@@ -4,3 +4,4 @@ logs/
 __pycache__/
 app/__pycache__/
 venv/
+zappa_settings.json
