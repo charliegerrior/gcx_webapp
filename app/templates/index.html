@@ -12,7 +12,7 @@
             <th>volume (prev. 24 hours)</th>
         {% for gc in gcs %}
         <tr>
-            <td><a href="/{{ gc.symbol }}">{{ gc.symbol }}</a></td>
+            <td><a href="{{ url_for('main.gc', symbol=gc.symbol) }}">{{ gc.symbol }}</a></td>
             <td>${{ '{0:.2f}'.format(gc.price) }}</td>
             <td>${{ '{0:.2f}'.format(gc.bid) }}</td>
             <td>${{ '{0:.2f}'.format(gc.ask) }}</td>
