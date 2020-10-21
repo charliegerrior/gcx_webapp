@@ -5,7 +5,7 @@ class Submission(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     reddit_id = db.Column(db.String(7), unique=True)
     reddit_link = db.Column(db.String(100), unique=True)
-    title = db.Column(db.Text, index=True)
+    title = db.Column(db.Text)
     created_at = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     offer = db.relationship("Offer", back_populates="submission")
     status = db.Column(db.String(10), index=True)
