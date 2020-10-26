@@ -37,7 +37,7 @@ def gc(symbol):
     #vol = Offer.query.filter_by(symbol=symbol).count()
     vol = db.session.query(Offer).filter_by(symbol=symbol).join(Submission).filter(Submission.created_at.between(datetime.utcnow() - timedelta(hours=24), datetime.utcnow())).count()
 
-    return render_template('gc.html', gc = gc, bid = latestBid, ask = latestAsk, symbol = symbol, vol = vol, price = price, bids = recentBids, asks=recentAsks)
+    return render_template('gc.html', gc = gc, bid = latestBid, ask = latestAsk, symbol = symbol, vol = vol, price = price, bids = recentBids, asks=recentAsks, title=symbol)
 
 @bp.route('/<symbol>/bids')
 def bids(symbol):
