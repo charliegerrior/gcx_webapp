@@ -24,6 +24,20 @@
 		"environment_variables": {
 		            "LOG_TO_STDOUT": "1",
 		        }
-    }
+    },
+    "production": {
+        "app_function": "gcxbot.app",
+        "profile_name": "default",
+        "project_name": "webapp",
+        "runtime": "python3.8",
+		"aws_region": "us-east-1",
+		"manage_roles": false,
+		"role_name": "lambda-vpc-role", 
+		"role_arn": "arn:aws:iam::638360674761:role/lambda-vpc-role", 
+		"environment_variables": {
+		            "LOG_TO_STDOUT": "1",
+					"DATABASE_URL": "mysql+mysqlconnector://admin:w$f{MOA;kBF%ls@database-1.cluster-clwnvtjgg8s1.us-east-1.rds.amazonaws.com/gcxbot"
+		        }
+    },
 	
 }
