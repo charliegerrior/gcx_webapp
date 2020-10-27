@@ -39,19 +39,6 @@ def gc(symbol):
 
     return render_template('gc.html', gc = gc, bid = latestBid, ask = latestAsk, symbol = symbol, vol = vol, price = price, bids = recentBids, asks=recentAsks, title=symbol)
 
-@bp.route('/<symbol>/bids')
-def bids(symbol):
-    symbol = symbol.upper()
-    bids = db.session.query(Offer).filter_by(symbol=symbol, type="bid").join(Submission).order_by(Submission.created_at.desc()).limit(10).all()
-    return render_template('bids.html', symbol = symbol, bids = bids)
-
-@bp.route('/<symbol>/asks')
-def asks(symbol):
-    symbol = symbol.upper()
-    asks = db.session.query(Offer).filter_by(symbol=symbol, type="ask").join(Submission).order_by(Submission.created_at.desc()).limit(10).all()
-
-    return render_template('asks.html', symbol = symbol, asks = asks)
-
 @bp.route('/about')
 def about():
     return render_template('about.html', title='About')
