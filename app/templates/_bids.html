@@ -6,7 +6,7 @@
     </tr>
     {% for bid in bids %}
     <tr>
-        <td><a href="https://www.reddit.com{{ bid.submission.reddit_link }}">${{ '{0:.2f}'.format(bid.price) }} x {{ '{}'.format(bid.qty) }}</a></td>
+        <td><a href="https://old.reddit.com{{ bid.submission.reddit_link }}">${{ '{0:.2f}'.format(bid.price) }} x {{ '{}'.format(bid.qty) }}</a></td>
         <td>{{ bid.submission.status }}</td>
         <td>{{ moment(bid.submission.created_at).fromNow() }}</td>
     </tr>
